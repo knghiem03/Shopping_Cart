@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CartTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-21T14:56:29" hostname="C02GC214MD6R" time="0.011">
+  <properties/>
+  <testcase name="Check function" classname="CartTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,73 +1,48 @@
-// Consider using data class later ?
+
+
+import java.util.Scanner
 fun main() {
-
-    class Product(id_param: String, name_param: String, price_param: Double) {
-
-        var id = id_param  // product ID with custom setter
-            set(value) {
-                if ( value != "" ) field = value
-            }
-        var name = name_param  // product name with custom setter
-            set(value) {
-                if ( value != "" ) field = value
-            }
-        var price = price_param  // product price with custom setter
-            set(value) {
-                if ( value >  0.0 ) field = value
-            }
-
-        fun printItem() {
-            print("$id - $name - $price")
-            println()
-        }
-    }
-
-    class Cart {
-        private val items = mutableListOf<Product>()  // best data structure for items in cart ?
-
-        fun addProduct(item: Product) {
-            items.add(item)
-        }
-
-        fun removeProduct(item: Product) {
-            items.remove(item)
-        }
-
-        fun showItemsInCart() {
-            println("Items in my cart")
-            for ( item in items ) {
-                println("${item.id} - ${item.name} - ${item.price}")
-            }
-        }
-
-        fun calculateTotal() {
-            var total = 0.0
-            for (item in items) {
-                total += item.price
-            }
-            print("Total : $${total}")
-        }
-    }
-
-    println("Hello shopper !!")
-    val item1 = Product("001", "Banana", 1.59)
-    item1.printItem()
-    val item2 = Product("002", "Cheerios", 3.59)
-    item2.printItem()
-    val item3 = Product("003", "Ice cream", 5.59)
-    item3.printItem()
+    AppMenu()
+//    val myProduct = Product()
     val myCart = Cart()
-    myCart.addProduct(item1)
-    myCart.addProduct(item2)
-    myCart.addProduct(item3)
-    myCart.addProduct(Product("004", "Milk", 3.99))
-    myCart.showItemsInCart()
-    myCart.removeProduct(item1)
-    println("Remove banana from the cart")
-    myCart.showItemsInCart()
-    myCart.calculateTotal()
-    println()
-    println("Thank you for shopping with us !")
-
+    var itemNum: Int = 0
+    val scanner = Scanner(System.`in`)
+    val validList = arrayOf("add","cart","remove","total","done")
+    while (true) {
+        val inputLine = scanner.nextLine()
+        println(inputLine)
+        val words = inputLine.split(" ")
+        if (!validList.contains(words[0])) {
+            println("Please enter a valid command from the menu")
+        }
+        else if (words[0] == "done") {
+            println("Thank you for shopping with us !")
+            break
+        }
+        else if (words[0] == "add") {
+            itemNum += 1
+            val product = Triple( itemNum, words[1], words[2] )
+            myCart.addProduct(Triple( itemNum, words[1], words[2] ))
+        }
+        else if (words[0] == "cart")
+            myCart.showItemsInCart()
+        else if (words[0] == "total")
+            myCart.calculateTotal()
+        else if (words[0] == "remove")
+            myCart.removeProduct(words[1].toInt())
+    }
+    scanner.close()
 }
+
+fun AppMenu() {
+    println("Hello shopper!! Welcome to my store.")
+    println("")
+    println("Enter add [name] [price] to add a Product to the Shopping Cart.")
+    println("Enter cart to display all Products in the Shopping Cart.")
+    println("Enter remove [id] to remove a Product from the Shopping Cart.")
+    println("Enter total to sum and return the total price of Products in the Shopping Cart.")
+    println("Enter done to exit the Shopping Cart App,")
+}
+
+
     
