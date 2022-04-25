@@ -4,29 +4,41 @@ class Cart {
     private val items = mutableMapOf<Int,Pair<String,Double>>()
     // best data structure for items in cart ?
 
-    fun addProduct(item: Triple<Int, String, String>) {
-        items[item.first.toInt()] = Pair(item.second, item.third.toDouble())
+    fun addProduct(item: Triple<Int, String, String>): Boolean {
+        return try {
+            items[item.first.toInt()] = Pair(item.second, item.third.toDouble())
+            true
+        } catch (e: NumberFormatException) {
+            println("Please enter the price of the item")
+            false
+        }
     }
 
-    fun removeProduct(item: Int) {
-        items.remove(item)
+    fun removeProduct(item: Int): Boolean {
+        return when {
+            items.containsKey(item) -> {
+                items.remove(item)
+                true
+            }
+            else -> {
+                println("Item not in cart.")
+                false
+            }
+        }
     }
 
     fun showItemsInCart() {
         println("Items in my cart")
-        for ( key in items.keys ) {
-            println("$key - ${items[key]}")
-        }
+        items.forEach {( key, value) -> println("$key - $value")}
     }
 
-    fun calculateTotal() {
+    fun calculateTotal(): Double {
         var grandTotal: Double = 0.0
-        for (key in items.keys) {
-            grandTotal += items.getValue(key).second
-        }
+        items.forEach {(key,value) -> grandTotal += value.second }
         val df = DecimalFormat("#.##")
         val grandTotalFormat = df.format(grandTotal)
-        print("Total : $${grandTotalFormat}")
+        println("Total : $${grandTotalFormat}")
+        return grandTotal
     }
 }
 

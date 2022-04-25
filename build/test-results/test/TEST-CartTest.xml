@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CartTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-21T14:56:29" hostname="C02GC214MD6R" time="0.011">
+<testsuite name="CartTest" tests="6" skipped="1" failures="0" errors="0" timestamp="2022-04-25T15:30:06" hostname="C02GC214MD6R" time="0.034">
   <properties/>
-  <testcase name="Check function" classname="CartTest" time="0.011"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testRemoveProduct()" classname="CartTest" time="0.025"/>
+  <testcase name="testRemoveNonExistingProduct()" classname="CartTest" time="0.002"/>
+  <testcase name="Test addProduct" classname="CartTest" time="0.001"/>
+  <testcase name="testShowItemsInCart()" classname="CartTest" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase name="Test addProduct with bad price format" classname="CartTest" time="0.001"/>
+  <testcase name="Test calculateTotal" classname="CartTest" time="0.002"/>
+  <system-out><![CDATA[Item not in cart.
+Please enter the price of the item
+Total : $9.57
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
