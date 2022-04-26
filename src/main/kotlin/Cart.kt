@@ -1,23 +1,38 @@
 import java.text.DecimalFormat
 
+class customOutOfStockException(message: String) : Exception(message)
 class Cart {
     private val items = mutableMapOf<Int,Pair<String,Double>>()
+    private val outOfStockItems = listOf("bagel", "donut", "celery")
     // best data structure for items in cart ?
 
     fun addProduct(item: Triple<Int, String, String>): Boolean {
         return try {
+            if (item.second.lowercase() in outOfStockItems) {
+                    throw customOutOfStockException("Sorry we are out of $item.second")
+            }
             items[item.first.toInt()] = Pair(item.second, item.third.toDouble())
             true
         } catch (e: NumberFormatException) {
-            println("Please enter the price of the item")
+            println("Please re-enter the command, item and the price of the item")
+            false
+        } catch (e: customOutOfStockException) {
+            println("Sorry we are out of ${item.second}")
+            print(outOfStockItems.joinToString(
+                prefix = "(",
+                separator = ", ",
+                postfix = ")"
+            ))
+            println(" are currently out of stock")
             false
         }
     }
 
     fun removeProduct(item: Int): Boolean {
         return when {
-            items.containsKey(item) -> {
+            items.containsKey(item.toInt()) -> {
                 items.remove(item)
+                println("Item # $item was removed from the cart")
                 true
             }
             else -> {
@@ -28,8 +43,13 @@ class Cart {
     }
 
     fun showItemsInCart() {
-        println("Items in my cart")
-        items.forEach {( key, value) -> println("$key - $value")}
+            if (items.isNotEmpty()) {
+                println("Items in my cart")
+                items.forEach {( key, value) -> println("$key - $value")}
+            }
+            else {
+                println("Cart is empty")
+            }
     }
 
     fun calculateTotal(): Double {

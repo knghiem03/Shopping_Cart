@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CartTest" tests="6" skipped="1" failures="0" errors="0" timestamp="2022-04-25T15:30:06" hostname="C02GC214MD6R" time="0.034">
+<testsuite name="CartTest" tests="12" skipped="1" failures="0" errors="0" timestamp="2022-04-26T15:41:48" hostname="C02GC214MD6R" time="0.036">
   <properties/>
-  <testcase name="testRemoveProduct()" classname="CartTest" time="0.025"/>
-  <testcase name="testRemoveNonExistingProduct()" classname="CartTest" time="0.002"/>
-  <testcase name="Test addProduct" classname="CartTest" time="0.001"/>
-  <testcase name="testShowItemsInCart()" classname="CartTest" time="0.001">
+  <testcase name="Remove product without giving the product number" classname="CartTest" time="0.001">
     <skipped/>
   </testcase>
-  <testcase name="Test addProduct with bad price format" classname="CartTest" time="0.001"/>
-  <testcase name="Test calculateTotal" classname="CartTest" time="0.002"/>
-  <system-out><![CDATA[Item not in cart.
-Please enter the price of the item
+  <testcase name="testRemoveProduct()" classname="CartTest" time="0.015"/>
+  <testcase name="testShowItemsInCartWhenCartIsEmpty()" classname="CartTest" time="0.008"/>
+  <testcase name="testRemoveNonExistingProduct()" classname="CartTest" time="0.001"/>
+  <testcase name="Add product without giving the price" classname="CartTest" time="0.001"/>
+  <testcase name="Test addProduct" classname="CartTest" time="0.001"/>
+  <testcase name="testShowItemsInCart()" classname="CartTest" time="0.001"/>
+  <testcase name="Test addProduct with out of stock item" classname="CartTest" time="0.001"/>
+  <testcase name="Test addProduct with bad price format" classname="CartTest" time="0.0"/>
+  <testcase name="Calculate total when cart is empty" classname="CartTest" time="0.001"/>
+  <testcase name="Test calculateTotal" classname="CartTest" time="0.001"/>
+  <testcase name="Add out of stock product without giving the price" classname="CartTest" time="0.001"/>
+  <system-out><![CDATA[Item # 3 was removed from the cart
+Item not in cart.
+Please re-enter the command, item and the price of the item
+Sorry we are out of bagel
+(bagel, donut, celery) are currently out of stock
+Please re-enter the command, item and the price of the item
+Total : $0
 Total : $9.57
+Sorry we are out of bagel
+(bagel, donut, celery) are currently out of stock
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

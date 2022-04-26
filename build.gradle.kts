@@ -14,7 +14,11 @@ repositories {
 
 dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    implementation("junit:junit:4.13.1")
     testImplementation(kotlin("test"))
+//    testImplementation("org.jetbrains.kotlin:kotlin-test")
+//    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation ("com.github.stefanbirkner:system-lambda:1.2.0")
 }
 
 tasks.test {

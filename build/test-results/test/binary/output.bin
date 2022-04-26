@@ -1,3 +1,11 @@
-Item not in cart.
-#Please enter the price of the item
-Total : $9.57
+#Item # 3 was removed from the cart
+Item not in cart.
+<Please re-enter the command, item and the price of the item
+	Sorry we are out of bagel
+	2(bagel, donut, celery) are currently out of stock
+
+<Please re-enter the command, item and the price of the item
+Total : $0
+Total : $9.57
+Sorry we are out of bagel
+2(bagel, donut, celery) are currently out of stock
