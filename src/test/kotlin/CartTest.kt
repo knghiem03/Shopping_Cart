@@ -1,14 +1,14 @@
 
-import org.hamcrest.CoreMatchers.startsWith
-import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import com.github.stefanbirkner.systemlambda.SystemLambda.*
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.fail
 import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.assertThrows
 
 
 class CartTest {
@@ -50,13 +50,13 @@ class CartTest {
 
     @Test
     @DisplayName("Remove product without giving the product number")
-    @Disabled("????? How to test this case via Junit ?????")
+    @Disabled("????? How to test this case via Junit ????? simulate no input as 'x' ")
     fun testRemoveProductWithoutProductNumber() {
         testCart.addProduct(Triple(1,"Milk", "1.99"))
         testCart.addProduct(Triple(2,"Cake", "5.99"))
         testCart.addProduct(Triple(3,"Banana","1.59"))
 
-//        assertTrue(testCart.removeProduct(""))
+//        assertTrue(testCart.removeProduct("x"))
 
     }
 
@@ -69,8 +69,8 @@ class CartTest {
     @Test
     @DisplayName("Add out of stock product without giving the price")
     fun testAddOutOfStockProductWithNoPrice() {
-        assertFalse(testCart.addProduct(Triple(4,"bagel","")))
-
+        val exception = Assertions.assertThrows(customOutOfStockException::class.java)
+             { testCart.addProduct(Triple(4, "bagel", "1.99")) }
     }
     @Test
     fun testRemoveProduct() {

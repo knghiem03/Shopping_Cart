@@ -14,7 +14,7 @@ class Cart {
             items[item.first.toInt()] = Pair(item.second, item.third.toDouble())
             true
         } catch (e: NumberFormatException) {
-            println("Please re-enter the command, item and the price of the item")
+            println("Please enter the command, item and the price of the item")
             false
         } catch (e: customOutOfStockException) {
             println("Sorry we are out of ${item.second}")

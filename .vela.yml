@@ -1,0 +1,13 @@
+steps:
+  - name: build_push_pull_tag
+    image: docker.target.com/mkpt/alpine-openjdk:11
+    pull: true
+    ruleset:
+      branch: master
+      event: [pull_request, push, tag]
+    environment:
+      JAVA_TOOL_OPTIONS: -Xmx3000M
+      GRADLE_USER_HOME: .gradle
+      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=1 -Dorg.gradle.parallel=false
+    commands:
+      - ./gradlew clean build
